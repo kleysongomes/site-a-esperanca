@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#002776" />
+  <title>Sua Recompensa Especial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+:root{--g:#009c3b;--gd:#006b28;--y:#ffdf00;--yd:#e6c800;--b:#002776;--bl:#0041c2;--w:#ffffff;--dk:#07101e;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;min-height:-webkit-fill-available;overflow:hidden;font-family:'Inter',sans-serif;background:var(--dk);color:#fff;}
+html{height:-webkit-fill-available;}
+#cv{position:fixed;inset:0;pointer-events:none;z-index:300;}
+#pt{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.dot{position:absolute;border-radius:50%;opacity:0;animation:rise linear infinite;}
+@keyframes rise{0%{transform:translateY(105vh) rotate(0deg);opacity:0;}8%{opacity:.7;}92%{opacity:.5;}100%{transform:translateY(-60px) rotate(540deg);opacity:0;}}
+
+/* ── SCREENS ── */
+.sc{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity .4s,transform .4s;}
+.sc.off{opacity:0;pointer-events:none;transform:scale(.97);}
+
+/* ══════════════════════════════════
+   SCREEN 1 — LANDING
+══════════════════════════════════ */
+#s1{background:radial-gradient(ellipse at 50% 0%,#0041c2 0%,#002776 45%,#050f1e 100%);padding:0;text-align:center;overflow:hidden;justify-content:space-between;}
+#s1::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(50deg,transparent,transparent 28px,rgba(255,223,0,.04) 28px,rgba(255,223,0,.04) 56px);pointer-events:none;}
+/* conteúdo decorativo ocupa o espaço disponível e centraliza */
+.l-body{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(.4rem,1.5vh,.9rem);padding:clamp(.8rem,2.5vh,1.5rem) 1.5rem 0;width:100%;overflow:hidden;}
+/* botão ancorado no rodapé */
+.l-foot{width:100%;display:flex;justify-content:center;padding:clamp(.8rem,2.5vh,1.5rem) 1.5rem clamp(1rem,3vh,2rem);flex-shrink:0;}
+.l-badge{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,223,0,.12);border:1px solid rgba(255,223,0,.35);color:var(--y);font-size:clamp(.6rem,2vw,.75rem);font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .9rem;border-radius:2rem;}
+.l-ring{width:clamp(100px,32vw,150px);height:clamp(100px,32vw,150px);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;border:2px solid rgba(255,223,0,.45);background:radial-gradient(circle,rgba(255,223,0,.22) 0%,transparent 70%);animation:rp 3s ease-in-out infinite;flex-shrink:0;}
+.l-ring::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(255,223,0,.18);animation:rp 3s ease-in-out .7s infinite;}
+@keyframes rp{0%,100%{box-shadow:0 0 20px rgba(255,223,0,.3);}50%{box-shadow:0 0 55px rgba(255,223,0,.65),0 0 90px rgba(255,223,0,.15);}}
+.l-ring svg{width:clamp(52px,16vw,76px);height:clamp(52px,16vw,76px);filter:drop-shadow(0 0 16px rgba(255,223,0,.9));animation:tf 2.8s ease-in-out infinite;}
+@keyframes tf{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-8px) scale(1.05);}}
+.l-eye{font-size:clamp(.68rem,2.2vw,.82rem);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.l-t1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,11vw,4.8rem);color:var(--y);line-height:.95;letter-spacing:.03em;text-shadow:0 0 40px rgba(255,223,0,.5);}
+.l-t2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.3rem,6.5vw,2.4rem);color:rgba(255,255,255,.9);letter-spacing:.05em;}
+.l-desc{color:rgba(255,255,255,.55);font-size:clamp(.8rem,2.5vw,.92rem);line-height:1.6;}
+.btn-main{background:linear-gradient(135deg,#ffdf00 0%,#ffb300 100%);color:var(--b);border:none;font-family:'Bebas Neue',sans-serif;font-size:clamp(1.25rem,5vw,1.6rem);letter-spacing:.1em;padding:.95rem 2.6rem;border-radius:60px;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 8px 28px rgba(255,223,0,.45);animation:bp 2s ease-in-out infinite;transition:transform .12s;touch-action:manipulation;white-space:nowrap;}
+.btn-main:active{transform:scale(.94);}
+@keyframes bp{0%,100%{box-shadow:0 8px 28px rgba(255,223,0,.4),0 0 0 0 rgba(255,223,0,.3);}50%{box-shadow:0 10px 38px rgba(255,223,0,.6),0 0 0 14px rgba(255,223,0,0);}}
+.btn-main::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:sh 2.4s infinite;}
+@keyframes sh{0%{left:-100%;}50%,100%{left:160%;}}
+
+/* ══════════════════════════════════
+   SCREEN 2 — PACK
+══════════════════════════════════ */
+#s2{background:radial-gradient(ellipse at 50% 25%,#003d18 0%,#001a0d 55%,#050f1e 100%);padding:0;text-align:center;overflow:hidden;justify-content:space-between;}
+.s2-body{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(.3rem,1vh,.6rem);padding:clamp(.8rem,2.5vh,1.5rem) 1.5rem 0;width:100%;overflow:hidden;}
+.s2-foot{width:100%;display:flex;justify-content:center;padding:clamp(.6rem,2vh,1.2rem) 1.5rem clamp(.8rem,2.5vh,1.6rem);flex-shrink:0;}
+#s2::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-50deg,transparent,transparent 28px,rgba(0,156,59,.06) 28px,rgba(0,156,59,.06) 56px);pointer-events:none;}
+.p-ey{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,5vw,2rem);letter-spacing:.1em;color:var(--y);margin-bottom:.2rem;}
+.p-sb{font-size:clamp(.75rem,2.5vw,.9rem);color:rgba(255,255,255,.5);letter-spacing:.04em;}
+.pack-wrap{display:flex;flex-direction:column;align-items:center;}
+.pack-svg{width:min(290px,78vw);cursor:pointer;filter:drop-shadow(0 28px 55px rgba(0,0,0,.75)) drop-shadow(0 0 35px rgba(0,156,59,.4)) drop-shadow(0 0 60px rgba(0,100,40,.25));transition:transform .2s;touch-action:manipulation;animation:pack-float 3.5s ease-in-out infinite;}
+@keyframes pack-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.pack-svg:hover{animation:none;transform:scale(1.03);}
+.pack-svg:active{animation:none;transform:scale(.95);}
+.pack-svg.shaking{animation:psk .55s ease-in-out;}
+@keyframes psk{0%,100%{transform:rotate(0) scale(1);}15%{transform:rotate(-5deg) scale(1.03);}30%{transform:rotate(5deg) scale(1.03);}45%{transform:rotate(-3deg) scale(1.02);}60%{transform:rotate(3deg) scale(1.01);}75%{transform:rotate(-1deg);}}
+.pack-glow{width:200px;height:20px;margin-top:-6px;background:radial-gradient(ellipse,rgba(0,200,80,.6) 0%,transparent 70%);animation:pg 2s ease-in-out infinite;}
+@keyframes pg{0%,100%{transform:scaleX(1);opacity:.6;}50%{transform:scaleX(1.4);opacity:1;}}
+/* tap ripple indicator */
+.tap-hint{margin-top:clamp(.8rem,2vh,1.5rem);display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.tap-ripple{width:54px;height:54px;position:relative;display:flex;align-items:center;justify-content:center;}
+.tap-ring{position:absolute;border-radius:50%;border:2px solid rgba(255,223,0,.55);animation:ripple-out 2s ease-out infinite;}
+.tap-ring.r1{animation-delay:0s;}
+.tap-ring.r2{animation-delay:.55s;}
+.tap-ring.r3{animation-delay:1.1s;}
+@keyframes ripple-out{0%{width:14px;height:14px;opacity:.9;}100%{width:56px;height:56px;opacity:0;}}
+.tap-dot{width:14px;height:14px;border-radius:50%;background:rgba(255,223,0,.85);box-shadow:0 0 10px rgba(255,223,0,.6);position:relative;z-index:1;animation:dot-pulse 2s ease-in-out infinite;}
+@keyframes dot-pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+.tap-hint span{font-size:clamp(.7rem,2.2vw,.82rem);color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;}
+
+/* ══════════════════════════════════
+   SCREEN 3 — CARDS
+══════════════════════════════════ */
+#s3{background:radial-gradient(ellipse at 50% 0%,#003d18 0%,#001a0d 40%,#050f1e 100%);padding:0;justify-content:space-between;}
+.cards-hdr{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:clamp(.7rem,2.2vh,1.1rem) 1.5rem 0;flex-shrink:0;}
+.cards-hdr-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.1rem,4vw,1.3rem);letter-spacing:.12em;color:var(--y);}
+.counter{display:flex;gap:.4rem;align-items:center;}
+.counter-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,transform .3s;}
+.counter-dot.active{background:var(--y);transform:scale(1.3);}
+.counter-dot.done{background:rgba(255,223,0,.45);}
+
+/* Card stage — ocupa espaço restante, limitado por altura */
+.card-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;perspective:900px;position:relative;padding:.5rem 0;}
+.card-stack-hint{position:absolute;width:90%;max-width:260px;height:7px;background:rgba(255,223,0,.12);border-radius:4px;bottom:-4px;left:50%;transform:translateX(-50%);}
+.card-stack-hint2{position:absolute;width:85%;max-width:248px;height:7px;background:rgba(255,223,0,.06);border-radius:4px;bottom:-10px;left:50%;transform:translateX(-50%);}
+/* tamanho do card: nunca maior que 74vw nem que (altura_disponível × 5/7) */
+#card-el{
+  width:min(252px,74vw,calc((100dvh - 190px)*5/7));
+  aspect-ratio:5/7;
+  border-radius:14px;overflow:hidden;position:relative;
+  box-shadow:0 16px 50px rgba(0,0,0,.65),0 0 0 2.5px var(--y),0 0 35px rgba(255,223,0,.3);
+  transition:transform .22s ease-in;transform-origin:center;
+}
+#card-el.flip-out{transform:rotateY(-90deg) scale(.9);}
+#card-el.flip-in{transform:rotateY(90deg) scale(.9);transition:none;}
+#card-el.flip-settle{transform:rotateY(0deg) scale(1);transition:transform .22s ease-out;}
+
+/* Attribute card internals */
+.ac{width:100%;height:100%;display:flex;flex-direction:column;}
+.ac-hdr{padding:.45rem .65rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.ac-hdr-left{display:flex;align-items:center;gap:.4rem;}
+.ac-hdr-left svg{width:12px;height:12px;color:#fff;fill:currentColor;}
+.ac-hdr-label{font-family:'Bebas Neue',sans-serif;font-size:.68rem;letter-spacing:.16em;color:#fff;}
+.ac-hdr-num{font-family:'Bebas Neue',sans-serif;font-size:.6rem;letter-spacing:.12em;color:rgba(255,255,255,.6);}
+.ac-body{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.6rem .6rem;gap:.25rem;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.35) 100%);}
+.ac-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;}
+.ac-icon svg{width:32px;height:32px;}
+.ac-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,5.5vw,2.1rem);letter-spacing:.06em;text-align:center;line-height:1;}
+.ac-stat{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,8vw,3.2rem);line-height:1;letter-spacing:.05em;}
+.ac-stat-lbl{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.ac-verse{font-style:italic;font-size:clamp(.64rem,2vw,.72rem);line-height:1.5;text-align:center;color:rgba(255,255,255,.75);padding:0 .3rem;}
+.ac-ref{font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.45);}
+.ac-ftr{padding:.45rem .65rem;display:flex;align-items:center;justify-content:space-between;background:var(--b);flex-shrink:0;}
+.ac-ftr-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:#fff;}
+.ac-ftr-tag{font-family:'Bebas Neue',sans-serif;font-size:.6rem;letter-spacing:.15em;color:var(--y);}
+
+/* Final card (image) */
+.fc{width:100%;height:100%;object-fit:cover;display:block;}
+.fc-wrap{width:100%;height:100%;position:relative;}
+.fc-rare{position:absolute;top:.55rem;right:.55rem;background:linear-gradient(135deg,var(--y),#ffb300);color:var(--b);font-family:'Bebas Neue',sans-serif;font-size:.68rem;letter-spacing:.15em;padding:.22rem .5rem;border-radius:1rem;}
+
+/* Cards footer */
+.cards-ftr{padding:0 1.5rem clamp(.7rem,2.2vh,1.1rem);display:flex;flex-direction:column;align-items:center;gap:.5rem;flex-shrink:0;}
+.btn-next{background:linear-gradient(135deg,#ffdf00 0%,#ffb300 100%);color:var(--b);border:none;font-family:'Bebas Neue',sans-serif;font-size:clamp(1.1rem,4.5vw,1.35rem);letter-spacing:.1em;padding:.8rem 2rem;border-radius:60px;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 6px 22px rgba(255,223,0,.4);transition:transform .12s;touch-action:manipulation;white-space:nowrap;}
+.btn-next:active{transform:scale(.94);}
+.btn-next::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:sh 2.4s infinite;}
+.tap-card-hint{font-size:.68rem;color:rgba(255,255,255,.3);letter-spacing:.08em;}
+
+/* ══════════════════════════════════
+   SCREEN 4 — CONTENT (scrollable)
+══════════════════════════════════ */
+#s4{position:fixed;inset:0;z-index:10;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;justify-content:flex-start;background:linear-gradient(180deg,#050f1e 0%,#002776 18%,var(--gd) 55%,#003d18 80%,#001a0d 100%);}
+.s4-card-top{width:100%;display:flex;flex-direction:column;align-items:center;padding:2.5rem 1.5rem 1.5rem;text-align:center;}
+.s4-label{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.5rem;}
+.s4-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,7vw,2.2rem);color:var(--y);line-height:1.05;letter-spacing:.04em;text-shadow:0 2px 18px rgba(255,223,0,.5);margin-bottom:1.6rem;}
+.s4-card-img{width:min(260px,76vw);border-radius:16px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.7),0 0 0 3px var(--y),0 0 50px rgba(255,223,0,.4);opacity:0;transform:rotateY(90deg) scale(.85);animation:ca 1s cubic-bezier(.3,0,.2,1) .1s forwards;}
+@keyframes ca{0%{opacity:0;transform:rotateY(90deg) scale(.85) translateY(30px);}60%{opacity:1;transform:rotateY(-4deg) scale(1.02) translateY(-5px);}100%{opacity:1;transform:rotateY(0) scale(1) translateY(0);}}
+.s4-card-img img{width:100%;height:auto;display:block;}
+.s4-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.38) 50%,transparent 70%);transform:translateX(-120%);animation:csh 3s ease .9s forwards;}
+@keyframes csh{0%{transform:translateX(-120%);opacity:1;}100%{transform:translateX(160%);opacity:1;}}
+.s4-card-img{position:relative;}
+.scroll-cue{margin-top:1.6rem;display:flex;flex-direction:column;align-items:center;gap:.3rem;opacity:0;animation:fi .6s ease 1.6s forwards;}
+@keyframes fi{from{opacity:0;}to{opacity:1;}}
+.scroll-cue svg{width:22px;height:22px;animation:bd 1.5s ease-in-out infinite;}
+@keyframes bd{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
+.scroll-cue p{font-size:.72rem;color:rgba(255,255,255,.35);letter-spacing:.12em;}
+.sep{display:flex;align-items:center;gap:1rem;padding:0 1.5rem;margin:1.8rem 0 1.5rem;opacity:0;animation:fu .7s ease 1.2s forwards;}
+.sep::before,.sep::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,223,0,.5),transparent);}
+.sep svg{width:24px;height:24px;color:rgba(255,223,0,.7);}
+.msg-sec{padding:0 1.5rem 2rem;max-width:480px;margin:0 auto;width:100%;opacity:0;animation:fu .8s ease 1.4s forwards;}
+@keyframes fu{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+.msg-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,6vw,1.9rem);letter-spacing:.06em;color:var(--y);text-align:center;margin-bottom:1rem;}
+.msg-body{font-size:clamp(.9rem,3vw,1rem);line-height:1.8;color:rgba(255,255,255,.82);text-align:center;}
+.msg-body p+p{margin-top:1rem;}
+.msg-quote{margin:1.2rem 0;padding:.9rem 1.1rem;background:rgba(255,223,0,.07);border-left:3px solid var(--y);border-radius:0 8px 8px 0;font-style:italic;font-size:clamp(.85rem,2.8vw,.95rem);line-height:1.75;color:rgba(255,255,255,.88);text-align:left;}
+.church-sec{width:100%;max-width:480px;margin:0 auto;padding:2rem 1.5rem;background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);opacity:0;animation:fu .8s ease 1.6s forwards;}
+.church-title{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:.1em;color:var(--y);text-align:center;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:.6rem;}
+.church-title svg{width:22px;height:22px;color:var(--y);}
+.church-grid{display:flex;flex-direction:column;gap:.75rem;}
+.church-item{display:flex;align-items:flex-start;gap:.85rem;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.85rem .95rem;}
+.church-ico{flex-shrink:0;width:28px;height:28px;color:var(--y);}
+.church-lbl{font-size:.63rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--y);margin-bottom:.22rem;}
+.church-val{font-size:.88rem;color:rgba(255,255,255,.8);line-height:1.55;}
+.cta-sec{width:100%;max-width:480px;margin:0 auto;padding:2.5rem 1.5rem 3.5rem;text-align:center;opacity:0;animation:fu .8s ease 1.8s forwards;}
+.cta-ico{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-bottom:1rem;}
+.cta-ico svg{width:32px;height:32px;color:var(--y);}
+.cta-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.3rem,10.5vw,3.8rem);color:var(--y);line-height:.98;letter-spacing:.04em;text-shadow:0 2px 20px rgba(255,223,0,.4);margin-bottom:.9rem;}
+.cta-txt{font-size:.98rem;line-height:1.65;color:rgba(255,255,255,.8);margin-bottom:2rem;}
+.cta-txt strong{color:var(--y);}
+.btn-cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;width:100%;max-width:320px;background:linear-gradient(135deg,#ffdf00 0%,#ffb300 100%);color:var(--b);font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em;padding:1.1rem 2rem;border-radius:60px;text-decoration:none;box-shadow:0 8px 30px rgba(255,223,0,.45);position:relative;overflow:hidden;transition:transform .12s;touch-action:manipulation;}
+.btn-cta:active{transform:scale(.95);}
+.btn-cta::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:sh 2.6s infinite;}
+.ft{text-align:center;padding:1.5rem;color:rgba(255,255,255,.2);font-size:.73rem;border-top:1px solid rgba(255,255,255,.06);}
+/* ── responsividade: telas baixas (landscape ou iphone SE) ── */
+@media(max-height:640px){
+  .l-ring{width:85px;height:85px;}
+  .l-ring svg{width:42px;height:42px;}
+  .l-t1{font-size:2rem;}
+  .l-t2{font-size:1.1rem;}
+  .l-desc{display:none;}
+  .l-body{gap:.28rem;}
+  .cards-hdr-title{font-size:1rem;}
+  .btn-next{font-size:1rem;padding:.65rem 1.5rem;}
+  .pack-svg{width:min(200px,58vw);}
+  .p-ey{font-size:1.2rem;}
+  .pack-glow{width:140px;}
+  .tap-hint{margin-top:.5rem;}
+}
+/* ── telas muito estreitas ── */
+@media(max-width:360px){
+  .pack-svg{width:78vw;}
+  .btn-main,.btn-next,.btn-cta{font-size:1.1rem;padding:.8rem 1.6rem;}
+  .msg-body,.msg-quote{font-size:.85rem;}
+}
+/* ── landscape no mobile ── */
+@media(max-height:500px){
+  .l-ring{width:70px;height:70px;}
+  .l-ring svg{width:35px;height:35px;}
+  .l-badge{display:none;}
+  .l-desc{display:none;}
+  .l-body{gap:.2rem;}
+  .pack-svg{width:min(170px,45vw);}
+}
+  </style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div id="pt"></div>
+
+<!-- SVG SYMBOLS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<symbol id="ic-trophy" viewBox="0 0 64 64" fill="none">
+  <path d="M22 8h20l-3 26q-7 10-14 0Z" fill="#C9A227"/>
+  <path d="M24 16Q14 16 14 26Q14 36 24 32" fill="none" stroke="#C9A227" stroke-width="4" stroke-linecap="round"/>
+  <path d="M40 16Q50 16 50 26Q50 36 40 32" fill="none" stroke="#C9A227" stroke-width="4" stroke-linecap="round"/>
+  <rect x="29" y="34" width="6" height="12" fill="#A87700"/>
+  <rect x="22" y="46" width="20" height="5" rx="2.5" fill="#C9A227"/>
+  <rect x="18" y="51" width="28" height="5" rx="2.5" fill="#A87700"/>
+</symbol>
+<symbol id="ic-ball" viewBox="0 0 24 24" fill="none">
+  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+  <path d="M12 2 L8 7 L12 12 L16 7 Z" fill="currentColor" opacity=".7"/>
+  <path d="M2 12 L7 10 L12 12 L7 14 Z" fill="currentColor" opacity=".7"/>
+  <path d="M22 12 L17 10 L12 12 L17 14 Z" fill="currentColor" opacity=".7"/>
+  <path d="M7.5 20 L10 15 L12 12 L14 15 L16.5 20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+</symbol>
+<symbol id="ic-chevron" viewBox="0 0 24 24" fill="none">
+  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="ic-pin" viewBox="0 0 24 24" fill="none">
+  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor"/>
+  <circle cx="12" cy="9" r="2.5" fill="white" opacity=".85"/>
+</symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24" fill="none">
+  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+  <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</symbol>
+<symbol id="ic-phone" viewBox="0 0 24 24" fill="none">
+  <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="currentColor"/>
+</symbol>
+<symbol id="ic-whatsapp" viewBox="0 0 24 24">
+  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"/>
+</symbol>
+<!-- CARD ICONS -->
+<symbol id="ic-heart" viewBox="0 0 100 100">
+  <path d="M50 85 Q10 58 10 32 Q10 14 28 12 Q42 10 50 28 Q58 10 72 12 Q90 14 90 32 Q90 58 50 85Z" fill="currentColor"/>
+</symbol>
+<symbol id="ic-cross" viewBox="0 0 100 100">
+  <rect x="42" y="10" width="16" height="80" rx="5" fill="currentColor"/>
+  <rect x="14" y="36" width="72" height="16" rx="5" fill="currentColor"/>
+</symbol>
+<symbol id="ic-dove" viewBox="0 0 100 100">
+  <ellipse cx="62" cy="38" rx="26" ry="15" transform="rotate(-30 62 38)" fill="currentColor"/>
+  <circle cx="74" cy="26" r="9" fill="currentColor"/>
+  <path d="M36 50 Q18 36 28 22 L55 38 Q48 54 36 50Z" fill="currentColor"/>
+  <line x1="50" y1="52" x2="44" y2="72" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+  <line x1="44" y1="72" x2="36" y2="78" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <line x1="44" y1="72" x2="52" y2="80" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+<symbol id="ic-bolt" viewBox="0 0 100 100">
+  <path d="M62 8 L24 58 L44 58 L38 92 L76 42 L56 42 Z" fill="currentColor"/>
+</symbol>
+<symbol id="ic-shield" viewBox="0 0 100 100">
+  <path d="M50 8 L14 24 L14 54 Q14 80 50 94 Q86 80 86 54 L86 24 Z" fill="currentColor"/>
+  <path d="M50 22 L26 33 L26 54 Q26 70 50 80 Q74 70 74 54 L74 33 Z" fill="currentColor" opacity=".4"/>
+</symbol>
+<symbol id="ic-anchor" viewBox="0 0 100 100">
+  <circle cx="50" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="8"/>
+  <line x1="50" y1="34" x2="50" y2="80" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+  <path d="M22 62 Q22 84 50 86 Q78 84 78 62" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+  <line x1="28" y1="48" x2="72" y2="48" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+</symbol>
+<symbol id="ic-star" viewBox="0 0 24 24">
+  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
+</symbol>
+<symbol id="ic-people" viewBox="0 0 24 24">
+  <circle cx="9" cy="6" r="3" fill="currentColor"/>
+  <path d="M3 20c0-3.9 2.7-7 6-7s6 3.1 6 7" fill="currentColor" opacity=".85"/>
+  <circle cx="17" cy="7.5" r="2.5" fill="currentColor" opacity=".55"/>
+  <path d="M20.5 20c0-2.8-1.5-5.1-3.5-6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".55" fill="none"/>
+</symbol>
+</defs>
+</svg>
+
+<!-- ══ SCREEN 1: LANDING ══ -->
+<div class="sc" id="s1">
+  <div class="l-body">
+    <span class="l-badge">
+      <svg width="12" height="12"><use href="#ic-star"/></svg>
+      FIFA WORLD CUP 2026
+      <svg width="12" height="12"><use href="#ic-star"/></svg>
+    </span>
+    <div class="l-ring">
+      <svg><use href="#ic-trophy"/></svg>
+    </div>
+    <p class="l-eye">Você recebeu</p>
+    <h1 class="l-t1">UMA RECOMPENSA</h1>
+    <p class="l-t2">ESPECIAL</p>
+    <p class="l-desc">Uma mensagem que pode<br/>mudar tudo pra você</p>
+  </div>
+  <div class="l-foot">
+    <button class="btn-main" id="btn1">RESGATAR RECOMPENSA</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN 2: PACK ══ -->
+<div class="sc off" id="s2">
+  <div class="s2-body">
+  <p class="p-ey">SUA FIGURINHA CHEGOU</p>
+  <p class="p-sb">Toque no pacote para revelar</p>
+  <div class="pack-wrap">
+    <!-- Panini 2026 style pack -->
+    <svg class="pack-svg" id="pack" viewBox="0 0 210 270" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="pk"><rect x="5" y="5" width="200" height="260" rx="10"/></clipPath>
+      </defs>
+      <!-- White base -->
+      <rect x="5" y="5" width="200" height="260" rx="10" fill="white"/>
+      <!-- Colorful circles (clipped) -->
+      <g clip-path="url(#pk)">
+        <circle cx="28" cy="48" r="68" fill="#26C6DA"/>
+        <circle cx="182" cy="38" r="68" fill="#1565C0"/>
+        <circle cx="196" cy="148" r="55" fill="#EF6C00"/>
+        <circle cx="92" cy="228" r="62" fill="#C5E044"/>
+        <circle cx="174" cy="252" r="62" fill="#B71C1C"/>
+        <circle cx="8"  cy="172" r="52" fill="#388E3C"/>
+        <circle cx="105" cy="8"  r="38" fill="#9C27B0" opacity=".35"/>
+      </g>
+      <!-- "2" and "6" (before white oval so they peek out) -->
+      <text x="52"  y="130" font-family="Arial Black,Arial,sans-serif" font-size="92" font-weight="900" fill="#002776" opacity=".18" text-anchor="middle">2</text>
+      <text x="158" y="130" font-family="Arial Black,Arial,sans-serif" font-size="92" font-weight="900" fill="#002776" opacity=".18" text-anchor="middle">6</text>
+      <!-- White center oval -->
+      <ellipse cx="105" cy="100" rx="60" ry="78" fill="white"/>
+      <!-- Trophy (inside oval) -->
+      <path d="M83 58 L127 58 L122 96 Q105 110 88 96 Z" fill="#C9A227"/>
+      <path d="M85 68 Q68 68 68 82 Q68 96 85 90" fill="none" stroke="#C9A227" stroke-width="5.5" stroke-linecap="round"/>
+      <path d="M125 68 Q142 68 142 82 Q142 96 125 90" fill="none" stroke="#C9A227" stroke-width="5.5" stroke-linecap="round"/>
+      <!-- Trophy shine -->
+      <path d="M87 58 L103 58 L100 88 Q93 98 88 94 Z" fill="#D4A830" opacity=".5"/>
+      <rect x="99" y="96"  width="12" height="20" fill="#A87700"/>
+      <rect x="84" y="116" width="42" height="7"  rx="3.5" fill="#C9A227"/>
+      <rect x="77" y="123" width="56" height="8"  rx="4"   fill="#A87700"/>
+      <!-- FIFA oval -->
+      <ellipse cx="105" cy="150" rx="24" ry="11" fill="#002776"/>
+      <text x="105" y="153.5" font-family="Arial,sans-serif" font-size="8.5" font-weight="900" fill="white" text-anchor="middle" letter-spacing="2.5">FIFA</text>
+      <!-- WORLD CUP band overlay -->
+      <rect x="5" y="170" width="200" height="52" fill="black" fill-opacity=".32" clip-path="url(#pk)"/>
+      <text x="105" y="187" font-family="Arial Black,Arial,sans-serif" font-size="9"  font-weight="900" fill="white" text-anchor="middle" letter-spacing="3">WORLD CUP</text>
+      <text x="105" y="214" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="white" text-anchor="middle" letter-spacing="2">2026</text>
+      <!-- Badges row -->
+      <rect x="12"  y="229" width="76" height="32" rx="5" fill="#388E3C"/>
+      <text x="50"  y="243" font-family="Arial,sans-serif" font-size="15" font-weight="900" fill="white" text-anchor="middle">7</text>
+      <text x="50"  y="255" font-family="Arial,sans-serif" font-size="8"  font-weight="700" fill="white" text-anchor="middle" letter-spacing="1.5">CROMOS</text>
+      <rect x="122" y="229" width="76" height="32" rx="5" fill="#FDD835"/>
+      <text x="160" y="250" font-family="Arial Black,Arial,sans-serif" font-size="13" font-weight="900" fill="#B71C1C" text-anchor="middle" letter-spacing="1">PANINI</text>
+      <!-- Corner marks -->
+      <rect x="5"   y="5"   width="13" height="13" rx="3" fill="#1a1a1a"/>
+      <rect x="192" y="5"   width="13" height="13" rx="3" fill="#1a1a1a"/>
+      <rect x="5"   y="252" width="13" height="13" rx="3" fill="#1a1a1a"/>
+      <rect x="192" y="252" width="13" height="13" rx="3" fill="#1a1a1a"/>
+      <!-- Border -->
+      <rect x="5" y="5" width="200" height="260" rx="10" fill="none" stroke="#ccc" stroke-width=".8"/>
+    </svg>
+    <div class="pack-glow"></div>
+  </div>
+  <div class="tap-hint">
+    <div class="tap-ripple">
+      <div class="tap-ring r1"></div>
+      <div class="tap-ring r2"></div>
+      <div class="tap-ring r3"></div>
+      <div class="tap-dot"></div>
+    </div>
+    <span>Toque no pacote</span>
+  </div>
+  </div><!-- /s2-body -->
+  <div class="s2-foot"></div>
+</div>
+
+<!-- ══ SCREEN 3: CARDS ══ -->
+<div class="sc off" id="s3">
+  <div class="cards-hdr">
+    <span class="cards-hdr-title">PACOTE DE FIGURINHAS</span>
+    <div class="counter" id="dots"></div>
+  </div>
+  <div class="card-stage">
+    <div class="card-stack-hint2"></div>
+    <div class="card-stack-hint"></div>
+    <div id="card-el"></div>
+  </div>
+  <div class="cards-ftr">
+    <button class="btn-next" id="btn-next">VER PRÓXIMA FIGURINHA</button>
+    <span class="tap-card-hint">ou toque na carta</span>
+  </div>
+</div>
+
+<!-- ══ SCREEN 4: CONTENT ══ -->
+<div class="sc off" id="s4">
+  <div class="s4-card-top">
+    <p class="s4-label">Figurinha Revelada</p>
+    <h2 class="s4-title">CHEGOU A FIGURINHA<br/>QUE FALTAVA NA SUA VIDA</h2>
+    <div class="s4-card-img">
+      <img src="carta-Gzus.jpeg" alt="Jesus – A figurinha que faltava na sua vida"/>
+    </div>
+    <div class="scroll-cue">
+      <svg viewBox="0 0 24 24" fill="none" style="color:rgba(255,255,255,.4)"><use href="#ic-chevron"/></svg>
+      <p>ROLE PARA VER A MENSAGEM</p>
+    </div>
+  </div>
+
+  <div class="sep"><svg><use href="#ic-ball"/></svg></div>
+
+  <div class="msg-sec">
+    <h3 class="msg-title">A NOSSA ÚNICA ESPERANÇA</h3>
+    <div class="msg-body">
+      <p>Em um mundo cheio de incertezas, medos e transformações rápidas, é fácil nos sentirmos perdidos procurando respostas em direções erradas. Mas a verdade é que o ser humano só encontra descanso real quando olha para o alto. <strong style="color:var(--y)">Jesus Cristo é a nossa única e verdadeira esperança.</strong></p>
+      <p>Ele não apenas nos resgatou do passado, mas também garante o nosso futuro. A maior promessa que Ele nos deixou é a de que este cenário presente não é o fim: <strong style="color:var(--y)">Ele vai voltar.</strong></p>
+      <p>A Bíblia nos dá essa certeza absoluta em João 14:1-3:</p>
+      <blockquote class="msg-quote">"Não se turbe o vosso coração; credes em Deus, crede também em mim. Na casa de meu Pai há muitas moradas; se não fosse assim, eu vo-lo teria dito, pois vou preparar-vos lugar. E, se eu for e vos preparar lugar, virei outra vez e vos levarei para mim mesmo, para que, onde eu estiver, estejais vós também."</blockquote>
+      <p>Que essa promessa encha o seu coração de paz hoje.<br/><strong style="color:var(--y);font-size:1.1rem;">Maranata! Ora, vem, Senhor Jesus.</strong></p>
+    </div>
+  </div>
+
+  <div class="cta-sec">
+    <div class="cta-ico">
+      <svg><use href="#ic-trophy"/></svg>
+    </div>
+    <h2 class="cta-t">ENTRA PRA<br/>ESSE TIME!</h2>
+    <p class="cta-txt">
+      O time mais incrível do mundo não joga em campo —<br/>
+      ele transforma vidas.<br/>
+      <strong>Venha fazer parte!</strong>
+    </p>
+    <a href="https://linktr.ee/adventistasesperanca" class="btn-cta" target="_blank" rel="noopener">
+      QUERO FAZER PARTE!
+    </a>
+  </div>
+  <footer class="ft">Jovens Adventistas Cidade da Esperança &copy; 2026</footer>
+</div>
+
+<script>
+const CARDS = [
+  { type:'attr', name:'AMOR',       num:'JES-001', stat:'∞',    statLbl:'IMENSURÁVEL', verse:'"Deus é amor, e quem permanece no amor permanece em Deus."', ref:'1 João 4:8',           icon:'ic-heart',  hdr:'#c62828', acc:'#ff8a80' },
+  { type:'attr', name:'GRAÇA',      num:'JES-002', stat:'+100', statLbl:'GRATUITO',    verse:'"Pela graça sois salvos, por meio da fé — e isto não vem de vós."', ref:'Efésios 2:8',  icon:'ic-cross',  hdr:'#00695c', acc:'#80cbc4' },
+  { type:'attr', name:'PAZ',        num:'JES-003', stat:'∞',    statLbl:'SURPREENDE',  verse:'"A paz de Deus, que excede todo o entendimento, guardará vosso coração."', ref:'Fil. 4:7', icon:'ic-dove', hdr:'#1565c0', acc:'#90caf9' },
+  { type:'attr', name:'PODER',      num:'JES-004', stat:'∞',    statLbl:'ILIMITADO',   verse:'"Tudo posso naquele que me fortalece."', ref:'Filipenses 4:13',                          icon:'ic-bolt',   hdr:'#6a1b9a', acc:'#ce93d8' },
+  { type:'attr', name:'FIDELIDADE', num:'JES-005', stat:'100',  statLbl:'CONFIÁVEL',   verse:'"Fiel é o que vos chama, o qual também o fará."', ref:'1 Tessalonicenses 5:24',          icon:'ic-shield', hdr:'#e65100', acc:'#ffcc80' },
+  { type:'attr', name:'ESPERANÇA',  num:'JES-006', stat:'+∞',   statLbl:'ETERNA',      verse:'"A esperança não nos envergonha, porque o amor de Deus está em nossos corações."', ref:'Romanos 5:5', icon:'ic-anchor', hdr:'#2e7d32', acc:'#a5d6a7' },
+  { type:'final' }
+];
+const N = CARDS.length;
+let idx = 0, busy = false;
+
+/* ── particles ── */
+(function(){
+  const c=document.getElementById('pt');
+  const cols=['#ffdf00','#009c3b','#002776','#ffffff','#ffb300'];
+  for(let i=0;i<28;i++){
+    const el=document.createElement('div');el.className='dot';
+    const s=Math.random()*6+3;
+    el.style.cssText=`width:${s}px;height:${s}px;background:${cols[i%cols.length]};left:${Math.random()*100}%;animation-duration:${Math.random()*13+9}s;animation-delay:${Math.random()*12}s;`;
+    c.appendChild(el);
+  }
+})();
+
+/* ── screens ── */
+function go(id){
+  ['s1','s2','s3','s4'].forEach(s=>document.getElementById(s).classList.add('off'));
+  const el=document.getElementById(id);
+  el.classList.remove('off');
+}
+
+/* ── landing ── */
+document.getElementById('btn1').addEventListener('click',()=>{vib(50);go('s2');});
+
+/* ── pack open ── */
+document.getElementById('pack').addEventListener('click',function(){
+  if(this.dataset.busy)return;
+  this.dataset.busy='1';
+  vib([30,60,90]);
+  this.classList.add('shaking');
+  setTimeout(()=>{
+    const f=document.createElement('div');
+    f.style.cssText='position:fixed;inset:0;background:#fff;z-index:500;pointer-events:none;transition:opacity .38s;';
+    document.body.appendChild(f);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      f.style.opacity='0';
+      setTimeout(()=>f.remove(),400);
+    }));
+    idx=0; buildDots(); renderCard(idx); go('s3');
+  },650);
+});
+
+/* ── dots ── */
+function buildDots(){
+  const c=document.getElementById('dots');c.innerHTML='';
+  for(let i=0;i<N;i++){
+    const d=document.createElement('div');d.className='counter-dot';d.id='dot-'+i;c.appendChild(d);
+  }
+  updateDots();
+}
+function updateDots(){
+  for(let i=0;i<N;i++){
+    const d=document.getElementById('dot-'+i);
+    if(!d)continue;
+    d.className='counter-dot'+(i===idx?' active':i<idx?' done':'');
+  }
+  const btn=document.getElementById('btn-next');
+  if(idx===N-1){ btn.textContent='VER A MENSAGEM COMPLETA'; }
+  else if(idx===N-2){ btn.textContent='REVELAR FIGURINHA ESPECIAL'; }
+  else { btn.textContent='VER PRÓXIMA FIGURINHA'; }
+}
+
+/* ── render card ── */
+function renderCard(i){
+  const el=document.getElementById('card-el');
+  const c=CARDS[i];
+  if(c.type==='final'){
+    el.innerHTML=`<div class="fc-wrap"><img class="fc" src="carta-Gzus.jpeg" alt="Jesus"/><span class="fc-rare">FIGURINHA RARA</span></div>`;
+  } else {
+    el.innerHTML=`
+<div class="ac">
+  <div class="ac-hdr" style="background:${c.hdr}">
+    <div class="ac-hdr-left">
+      <svg width="12" height="12" style="fill:rgba(255,255,255,.7)"><use href="#ic-star"/></svg>
+      <span class="ac-hdr-label">BRASIL &nbsp;&#9670;&nbsp; COPA 2026</span>
+    </div>
+    <span class="ac-hdr-num">${c.num}</span>
+  </div>
+  <div class="ac-body">
+    <div class="ac-icon" style="background:${c.acc}22;color:${c.acc}">
+      <svg><use href="#${c.icon}"/></svg>
+    </div>
+    <span class="ac-name" style="color:${c.acc}">${c.name}</span>
+    <span class="ac-stat" style="color:${c.acc}">${c.stat}</span>
+    <span class="ac-stat-lbl">${c.statLbl}</span>
+    <p class="ac-verse">${c.verse}</p>
+    <span class="ac-ref">${c.ref}</span>
+  </div>
+  <div class="ac-ftr">
+    <span class="ac-ftr-name">JESUS</span>
+    <span class="ac-ftr-tag">${c.num}</span>
+  </div>
+</div>`;
+  }
+}
+
+/* ── next card ── */
+function nextCard(){
+  if(busy||idx>=N-1)return;
+  if(idx===N-1){goContent();return;}
+  busy=true; vib(30);
+  const el=document.getElementById('card-el');
+  el.classList.add('flip-out');
+  setTimeout(()=>{
+    idx++;
+    updateDots();
+    renderCard(idx);
+    el.classList.remove('flip-out');
+    el.classList.add('flip-in');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      el.classList.remove('flip-in');
+      el.classList.add('flip-settle');
+      if(idx===N-1){ setTimeout(launchConfetti,300); }
+      setTimeout(()=>{el.classList.remove('flip-settle');busy=false;},230);
+    }));
+  },230);
+}
+
+document.getElementById('btn-next').addEventListener('click',()=>{
+  if(idx===N-1)goContent(); else nextCard();
+});
+document.getElementById('card-el').addEventListener('click',()=>{
+  if(idx===N-1)goContent(); else nextCard();
+});
+
+function goContent(){
+  vib([40,60,40]);
+  const f=document.createElement('div');
+  f.style.cssText='position:fixed;inset:0;background:#fff;z-index:500;pointer-events:none;transition:opacity .38s;';
+  document.body.appendChild(f);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    f.style.opacity='0';
+    setTimeout(()=>f.remove(),400);
+  }));
+  go('s4');
+  document.getElementById('s4').scrollTop=0;
+}
+
+/* ── confetti ── */
+function launchConfetti(){
+  const cv=document.getElementById('cv');
+  const ctx=cv.getContext('2d');
+  cv.width=innerWidth; cv.height=innerHeight;
+  const pal=['#ffdf00','#009c3b','#002776','#fff','#ff6b6b','#00c9ff','#ffb300'];
+  const ps=[];
+  for(let i=0;i<150;i++)ps.push({x:Math.random()*cv.width,y:-Math.random()*cv.height*.5,w:Math.random()*11+5,h:Math.random()*6+3,col:pal[i%pal.length],rot:Math.random()*Math.PI*2,rs:(Math.random()-.5)*.16,vx:(Math.random()-.5)*5,vy:Math.random()*3+2,op:1});
+  let f=0;
+  (function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.09;p.rot+=p.rs;if(f>55)p.op-=.009;if(p.op<=0)return;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.globalAlpha=Math.max(0,p.op);ctx.fillStyle=p.col;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});
+    f++;
+    if(f<230)requestAnimationFrame(draw);else ctx.clearRect(0,0,cv.width,cv.height);
+  })();
+}
+
+function vib(p){if(navigator.vibrate)navigator.vibrate(p);}
+
+</script>
+</body>
+</html>
