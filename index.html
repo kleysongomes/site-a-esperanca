@@ -120,6 +120,12 @@ html{height:-webkit-fill-available;}
 .btn-next:active{transform:scale(.94);}
 .btn-next::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:sh 2.4s infinite;}
 .tap-card-hint{font-size:.72rem;color:rgba(255,255,255,.55);letter-spacing:.08em;font-weight:500;}
+/* botão discreto de salvar figurinha */
+.btn-save{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.92);font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.42rem .9rem;border-radius:30px;cursor:pointer;transition:transform .12s,background .2s;touch-action:manipulation;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+.btn-save:active{transform:scale(.93);background:rgba(255,255,255,.22);}
+.btn-save svg{width:14px;height:14px;color:currentColor;}
+.btn-save.saved{background:rgba(21,153,75,.85);border-color:transparent;color:#fff;}
+.s4-save{margin-top:1.2rem;}
 
 /* ══════════════════════════════════
    SCREEN 4 — CONTENT (scrollable)
@@ -225,6 +231,10 @@ html{height:-webkit-fill-available;}
   <path d="M22 12 L17 10 L12 12 L17 14 Z" fill="currentColor" opacity=".7"/>
   <path d="M7.5 20 L10 15 L12 12 L14 15 L16.5 20" fill="none" stroke="currentColor" stroke-width="1.5"/>
 </symbol>
+<symbol id="ic-save" viewBox="0 0 24 24" fill="none">
+  <path d="M12 3v11m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M5 16v2.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</symbol>
 </defs>
 </svg>
 
@@ -286,6 +296,7 @@ html{height:-webkit-fill-available;}
   <div class="cards-ftr">
     <button class="btn-next" id="btn-next">VER PRÓXIMA FIGURINHA</button>
     <span class="tap-card-hint">ou toque na figurinha</span>
+    <button class="btn-save" id="btn-save"><svg><use href="#ic-save"/></svg> Salvar figurinha</button>
   </div>
 </div>
 
@@ -296,6 +307,7 @@ html{height:-webkit-fill-available;}
     <div class="s4-card-img">
       <img src="figurinha-principal.png" alt="Jesus – A figurinha que faltava na sua vida"/>
     </div>
+    <button class="btn-save s4-save" id="btn-save-final"><svg><use href="#ic-save"/></svg> Salvar figurinha</button>
     <div class="scroll-cue">
       <svg viewBox="0 0 24 24" fill="none"><use href="#ic-chevron"/></svg>
       <p>ROLE PARA VER A MENSAGEM</p>
@@ -464,6 +476,45 @@ function launchConfetti(){
 }
 
 function vib(p){if(navigator.vibrate)navigator.vibrate(p);}
+
+/* ── salvar figurinha (share nativo no celular, download no resto) ── */
+async function saveImage(src,btn){
+  vib(20);
+  const name=src.split('/').pop().split('?')[0]||'figurinha.png';
+  try{
+    const res=await fetch(src);
+    const blob=await res.blob();
+    const file=new File([blob],name,{type:blob.type||'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      try{ await navigator.share({files:[file]}); }catch(e){/* usuário cancelou */}
+      flagSaved(btn);
+      return;
+    }
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url; a.download=name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),2000);
+    flagSaved(btn);
+  }catch(e){
+    window.open(src,'_blank');
+  }
+}
+function flagSaved(btn){
+  if(!btn)return;
+  const html=btn.innerHTML;
+  btn.classList.add('saved');
+  btn.innerHTML='<svg><use href="#ic-save"/></svg> Salvo!';
+  setTimeout(()=>{btn.classList.remove('saved');btn.innerHTML=html;},2200);
+}
+document.getElementById('btn-save').addEventListener('click',function(e){
+  e.stopPropagation();
+  saveImage(CARDS[idx].img,this);
+});
+document.getElementById('btn-save-final').addEventListener('click',function(e){
+  e.stopPropagation();
+  saveImage('figurinha-principal.png',this);
+});
 </script>
 </body>
 </html>
